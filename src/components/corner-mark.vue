@@ -1,8 +1,8 @@
 <template>
   <div>
     <span class="corner-mark">
-      文字
-      <span class="circle"> {{ value }} </span>
+      <slot></slot>
+      <span class="circle" v-show="this.value !== 0"> {{ showValue }} </span>
     </span>
     
   </div>
@@ -13,7 +13,22 @@
     name: "corner-mark",
     data() {
       return {
-        value: '99+',
+     
+      }
+    },
+    computed: {
+      showValue() {
+        if(this.value > 99) {
+          return '99+'
+        } else {
+          return this.value
+        }
+      }
+    },
+    props: {
+      value: {
+        type: Number,
+        default: 0,
       }
     }
   }
@@ -23,13 +38,13 @@
 .corner-mark {
   position: relative;
   font-size: .4rem;
-  display: block;
+  // display: block;
   height: 2rem;
 
   .circle {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -.5rem;
+    right: -.4.5rem;
     width: .45rem;
     height: .45rem;
     border-radius: 50%;

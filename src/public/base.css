@@ -1,24 +1,24 @@
 .mt {
-  margin-top: 10px;
+  margin-top: .1rem;
 }
 .mb {
-  margin-bottom: 10px;
+  margin-bottom: .1rem;
 }
 .mr {
-  margin-right: 10px;
+  margin-right: .1rem;
 }
 .ml {
-  margin-left: 10px;
+  margin-left: .1rem;
 }
 .pt {
-  padding-top: 10px;
+  padding-top: .1rem;
 }
 .pb {
-  padding-bottom: 10px;
+  padding-bottom: .1rem;
 }
 .pl {
-  padding-left: 10px;
+  padding-left: .1rem;
 }
 .pr {
-  padding-right: 10px;
+  padding-right: .1rem;
 }

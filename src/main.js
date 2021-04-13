@@ -6,6 +6,9 @@ import store from './store'
 import NutUI from '@nutui/nutui';
 import '@nutui/nutui/dist/nutui.css';
 
+import base from './public/base'
+Vue.use(base)
+
 Vue.config.productionTip = false
 NutUI.install(Vue);
 

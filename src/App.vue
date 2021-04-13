@@ -17,4 +17,5 @@
 <style lang="scss">
 @import './public/reset.mobile.css';
 @import './public/base.css';
+@import '//at.alicdn.com/t/font_2479916_ujadh5vi2m.css'
 </style>
