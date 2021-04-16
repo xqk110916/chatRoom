@@ -7,7 +7,10 @@ import NutUI from '@nutui/nutui';
 import '@nutui/nutui/dist/nutui.css';
 
 import base from './public/base'
+import axios from './axios'
+
 Vue.use(base)
+Vue.prototype.axios = axios
 
 Vue.config.productionTip = false
 NutUI.install(Vue);

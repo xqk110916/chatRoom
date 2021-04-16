@@ -5,6 +5,10 @@ import msg from '@/views/message'
 import linkman from '@/views/linkman'
 import dynamic from '@/views/dynamic'
 
+import login from '@/views/login'
+import register from '@/views/register'
+import resetPassword from '@/views/resetPassword'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -19,7 +23,19 @@ const routes = [
   {
     path: '/dynamic',
     component: dynamic
-  }
+  },
+  {
+    path: '/login',
+    component: login
+  },
+  {
+    path: '/register',
+    component: register
+  },
+  {
+    path: '/resetPassword',
+    component: resetPassword
+  },
 ]
 
 const router = new VueRouter({

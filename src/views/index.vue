@@ -2,16 +2,18 @@
   <div>
     <div id="wapper">
       <div id="content">
+        <header-info v-show="isShow"></header-info>
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
       </div>
     </div>
-    <tabbar></tabbar>
+    <tabbar v-show="isShow"></tabbar>
   </div>
 </template>
 
 <script>
+  import headerInfo from '@/components/header-info'
   import tabbar from '@/components/tabBar'
   import cornerMark from '@/components/corner-mark'
   export default {
@@ -19,15 +21,36 @@
     data() {
       return {
         value: 100,
-        number: 20
+        number: 20,
+
+        isShow: true,
       };
+    },
+    mounted() {
+      this.$notify.setDefaultOptions({
+        duration: 2000
+      });
     },
     methods: {
 
     },
     components: {
+      headerInfo,
       tabbar,
-      cornerMark
+      cornerMark,
+    },
+    watch: {
+      $route: {
+        handler(to, from) {
+          let disPath = ['/login', '/register', '/resetPassword']
+          if(disPath.indexOf(to.path) !== -1) {
+            this.isShow = false
+          } else {
+            this.isShow = true
+          }
+        },
+        immediate: true
+      }
     }
   }
 </script>
