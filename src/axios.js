@@ -24,6 +24,8 @@ axios.interceptors.response.use(function (response) {
   return response.data
 }, function (error) {
   // 对响应错误做点什么
+  console.error("请求错误: " + error.message)
+  vm.$notify.danger(error.message)
   return Promise.reject(error)
 })
 export default axios

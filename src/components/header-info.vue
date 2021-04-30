@@ -6,6 +6,9 @@
     <div class="info">
       <div class="name">
         <p> name </p>
+        <div class="add">
+          <i class="iconfont icon-add"></i>
+        </div>
       </div>
       <div class="des">
         <p>  这是签名这是签名这是签名这是签名这是签名这是签名这是签名这是签名这是签名这是签名这是签名这是签名这是签名这是签名  </p>
@@ -47,6 +50,20 @@
       font-size: .4rem;
       height: 0.5rem;
       line-height:.5rem;
+
+      .add {
+        font-size: .4rem;
+        z-index: 9;
+        position: absolute;
+        top: .3rem;
+        right: .3rem;
+        
+        .iconfont {
+          color: #fff;
+          border: 1px solid #fff;
+          border-radius: 50%;
+        }
+      }
     }
     
     .des {
