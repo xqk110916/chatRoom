@@ -4,11 +4,11 @@
     <div class="login">
       <div class="user">
         <span> 名称: </span>
-        <nut-textinput v-model="params.name" placeholder="请输入你的用户名" :clearBtn="false"></nut-textinput>
+        <nut-textinput v-model="params.name" placeholder="请输入你的用户名称" :clearBtn="false"></nut-textinput>
       </div>
       <div class="user">
         <span> 账号: </span>
-        <nut-textinput v-model="params.userName" placeholder="请输入你的用户名" :clearBtn="false"></nut-textinput>
+        <nut-textinput v-model="params.userName" placeholder="请输入你的账号" :clearBtn="false"></nut-textinput>
       </div>
       <div class="phone">
         <span> 电话: </span>
