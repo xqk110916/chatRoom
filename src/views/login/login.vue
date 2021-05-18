@@ -33,7 +33,7 @@
     },
     methods: {
       enter() {
-        this.axios.post("/api/userInfo/login", this.params).then(result => {
+        this.post("/api/userInfo/login", this.params).then(result => {
           if(result.success) {
             this.$notify.success("登录成功")
             this.handlerClear()

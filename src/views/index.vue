@@ -4,11 +4,13 @@
       <div id="content">
         <header-info v-show="isShow"></header-info>
         <keep-alive>
-          <router-view></router-view>
+          <transition :name="transitionName">
+            <router-view></router-view>
+          </transition>
         </keep-alive>
       </div>
+      <tabbar v-show="isShow"></tabbar>
     </div>
-    <tabbar v-show="isShow"></tabbar>
   </div>
 </template>
 
@@ -22,6 +24,7 @@
       return {
         value: 100,
         number: 20,
+        transitionName: '',
 
         isShow: true,
       };
@@ -42,11 +45,18 @@
     watch: {
       $route: {
         handler(to, from) {
-          let disPath = ['/login', '/register', '/resetPassword']
+          let disPath = ['/login', '/register', '/resetPassword', '/add']
           if(disPath.indexOf(to.path) !== -1) {
             this.isShow = false
           } else {
             this.isShow = true
+          }
+
+          if(to && from && to.meta.index > from.meta.index){
+          //设置动画名称
+            this.transitionName = 'slide-left';
+          }else{
+            this.transitionName = 'slide-right';
           }
         },
         immediate: true
@@ -57,7 +67,10 @@
 
 <style lang="scss">
 #wapper {
+  max-width: 750px;
+  overflow: hidden;
   height: 100vh;
+  margin: 0 auto;
   
   #content {
     padding: .2rem .2rem 0;

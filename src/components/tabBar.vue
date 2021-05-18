@@ -1,3 +1,4 @@
+// 底部导航栏
 <template>
   <div class="header-bar">
     <router-link to="/msg" active-class="active">
@@ -46,6 +47,7 @@
 
 <style lang="scss" scoped>
 .header-bar {
+  max-width: 750px;
   width: 100vw;
   height: 1.5rem;
   box-sizing: border-box;

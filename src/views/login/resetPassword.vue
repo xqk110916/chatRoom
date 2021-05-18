@@ -35,7 +35,7 @@
     },
     methods: {
       enter() {
-        this.axios.post("/api/userInfo/resetPassword", this.params).then(result => {
+        this.post("/api/userInfo/resetPassword", this.params).then(result => {
           if(result.success) {
             this.$notify.success("重置成功, 将跳转到登录界面...")
             this.handlerClear()

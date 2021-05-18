@@ -6,7 +6,7 @@
     <div class="info">
       <div class="name">
         <p> name </p>
-        <div class="add">
+        <div class="add" @click="addFirend">
           <i class="iconfont icon-add"></i>
         </div>
       </div>
@@ -19,7 +19,17 @@
 
 <script>
   export default {
-    name: 'header-info'
+    name: 'header-info',
+    data() {
+      return {
+
+      }
+    },
+    methods: {
+      addFirend() {
+        this.$router.push("/add")
+      }
+    },
   }
 </script>
 
@@ -50,13 +60,14 @@
       font-size: .4rem;
       height: 0.5rem;
       line-height:.5rem;
+      position: relative;
 
       .add {
         font-size: .4rem;
         z-index: 9;
         position: absolute;
-        top: .3rem;
-        right: .3rem;
+        top: 0;
+        right: 0;
         
         .iconfont {
           color: #fff;

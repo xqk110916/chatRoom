@@ -40,7 +40,7 @@
     },
     methods: {
       enter() {
-        this.axios.post("/api/userInfo/register", this.params).then(result => {
+        this.post("/api/userInfo/register", this.params).then(result => {
           console.log(result)
           if(result.success) {
             this.$notify.success('注册成功, 将跳转至登录界面...')
