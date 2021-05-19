@@ -6,7 +6,7 @@
     <div class="info">
       <div class="name">
         <p> name </p>
-        <div class="add" @click="addFirend">
+        <div class="add" @click="addFriend">
           <i class="iconfont icon-add"></i>
         </div>
       </div>
@@ -26,7 +26,7 @@
       }
     },
     methods: {
-      addFirend() {
+      addFriend() {
         this.$router.push("/add")
       }
     },

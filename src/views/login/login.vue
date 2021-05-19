@@ -21,6 +21,7 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
   export default {
     name: 'login',
     data() {
@@ -32,16 +33,18 @@
       }
     },
     methods: {
+      ...mapActions(['login', 'logout']),
       enter() {
-        this.post("/api/userInfo/login", this.params).then(result => {
-          if(result.success) {
-            this.$notify.success("登录成功")
-            this.handlerClear()
-            setTimeout(() => {
-              this.$router.push('/')
-            }, 500)
-          }
-        })
+        this.test()
+        // this.post("/api/userInfo/login", this.params).then(result => {
+        //   if(result.success) {
+        //     this.$notify.success("登录成功")
+        //     this.handlerClear()
+        //     setTimeout(() => {
+        //       this.$router.push('/')
+        //     }, 500)
+        //   }
+        // })
       },
       back() {
         this.$router.push('/register')  

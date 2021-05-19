@@ -29,9 +29,14 @@ function emptyObject(params) { // params: 需要清空的对象;
   return params
 }
 
+function test() {
+  console.log(this.post)
+}
+
 const install = function(Vue, ops) {
   Vue.prototype.clone = clone
   Vue.prototype.emptyObject = emptyObject
+  Vue.prototype.test = test
 }
 
 export default install

@@ -5,7 +5,7 @@ import msg from '@/views/message'
 import linkman from '@/views/linkman'
 import dynamic from '@/views/dynamic'
 
-import add from '@/views/addFirend'
+import add from '@/views/addFriend'
 
 import login from '@/views/login/login'
 import register from '@/views/login/register'

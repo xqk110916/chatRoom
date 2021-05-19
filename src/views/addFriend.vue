@@ -16,19 +16,20 @@
         ></nut-searchbar>
       </nut-col>
     </nut-row>
-    <info-list :datas="[]"></info-list>
+    <info-list :datas="infoDatas"></info-list>
   </div>
 </template>
 
 <script>
   import infoList from '@/components/info-list'
   export default {
-    name: 'addFirend',
+    name: 'addFriend',
     data() {
       return {
         search: {
           userName: '',
-        }
+        },
+        infoDatas: [],
       }
     },
     components: {
@@ -40,9 +41,12 @@
         this.$router.go(-1)
       },
       submitSearch() {
+        this.infoDatas = []
         if(this.search.userName === '') return
         this.get("/api/friendInfo/queryDetailsByUserName", this.search).then(result => {
-          console.log(result)
+          if(result.success) {
+            this.infoDatas = result.data
+          }
         })
       },
       clearForm() {
