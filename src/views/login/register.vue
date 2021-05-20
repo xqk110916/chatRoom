@@ -40,8 +40,7 @@
     },
     methods: {
       enter() {
-        this.post("/api/userInfo/register", this.params).then(result => {
-          console.log(result)
+        this.SRegister(this.params).then(result => {
           if(result.success) {
             this.$notify.success('注册成功, 将跳转至登录界面...')
             this.handlerClear()

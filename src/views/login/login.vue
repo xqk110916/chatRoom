@@ -16,12 +16,11 @@
       </div>
       <router-link to="/register" class="register"> 还没账号?去注册 </router-link>
     </div>
-    
   </div>
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
   export default {
     name: 'login',
     data() {
@@ -33,18 +32,16 @@
       }
     },
     methods: {
-      ...mapActions(['login', 'logout']),
       enter() {
-        this.test()
-        // this.post("/api/userInfo/login", this.params).then(result => {
-        //   if(result.success) {
-        //     this.$notify.success("登录成功")
-        //     this.handlerClear()
-        //     setTimeout(() => {
-        //       this.$router.push('/')
-        //     }, 500)
-        //   }
-        // })
+        this.SLogin(this.params).then(result => {
+          if(result.success) {
+            this.$notify.success("登录成功")
+            this.handlerClear()
+            setTimeout(() => {
+              this.$router.push('/')
+            }, 500)
+          }
+        })
       },
       back() {
         this.$router.push('/register')  
