@@ -1,7 +1,7 @@
 // 搜索好友列表
 <template>
   <div class="info-list">
-    <div class="info-item" v-for="item in datas" :key="item.userName">
+    <div class="info-item" v-for="item in list" :key="item.userName">
       <div class="item-left">
         <img src="@/public/img/active-lianxiren.png" alt="">
       </div>
@@ -14,7 +14,7 @@
         </p>
       </div>
       <div class="info-button">
-        <span class="addBtn" @click="addField(item)"> 添加 </span>
+        <span :class="['addBtn', item.disabled ? 'disabled' : 'normal']" @click="addField(item)" > {{ item.btnValue }} </span>
       </div>
     </div>
   </div>
@@ -25,21 +25,41 @@
     name: 'info-list',
     data() {
       return {
-        
+
+      }
+    },
+    computed: {
+      list() {
+        let friendIds = this.XGetFriendIds()
+        return this.datas.map(item => {
+          let value = '添加'
+          let disabled = false
+          if(friendIds.indexOf(item.id) !== -1) {
+            value = '已添加'
+            disabled = true
+          }
+          item.btnValue = value
+          item.disabled = disabled
+          return item
+        })
       }
     },
     methods: {
       addField(item) {
+        if(item.disabled) return
         this.submit(item)
       },
       submit(item) {
-        this.post("/api/friendInfo/add", {
-          userId: this.userId,
+        this.SOperationAddFriend({
+          userId: this.XGetUserId(),
+          name: this.XGetUserInfo().name,
           friendId: item.id,
           remarkName: item.name,
           groupTagId: 0,
         }).then(result => {
-          
+          item.btnValue = '已申请'
+          item.disabled = true
+          this.$forceUpdate()
         })
       }
     },
@@ -47,7 +67,7 @@
       datas: {
         type: Array,
         default: [],
-      }
+      },
     }
   }
 </script>
@@ -97,9 +117,15 @@
       .addBtn {
         font-size: .1rem;
         padding: .12rem .21rem;
-        background: #ccc;
         color: #333;
         border-radius: .5rem;
+      }
+
+      .normal {
+        background: #ccc;
+      }
+      .disabled {
+        background: #eee;
       }
     }
   }

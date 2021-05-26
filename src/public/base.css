@@ -23,6 +23,12 @@
   padding-right: .1rem;
 }
 
+.over {
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
 .slide-right-enter-active,
 .slide-right-leave-active,
 .slide-left-enter-active,

@@ -29,13 +29,25 @@
         isShow: true,
       };
     },
+    created() {
+      if (sessionStorage.getItem('QQstate')) {
+        this.$store.replaceState(Object.assign({}, this.$store.state,JSON.parse(sessionStorage.getItem('QQstate'))))
+      }
+      if (window.addEventListener) {
+        window.addEventListener("beforeunload", this.reload, true)
+      } else {
+        window.attachEvent("onbeforeunload", this.reload)
+      }
+    },
     mounted() {
       this.$notify.setDefaultOptions({
         duration: 2000
       });
     },
     methods: {
-
+      reload() {
+        sessionStorage.setItem('QQstate', JSON.stringify(this.$store.state))
+      },
     },
     components: {
       headerInfo,

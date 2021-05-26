@@ -8,7 +8,7 @@
       </div>
       <div class="pas">
         <span> 密码: </span>
-        <nut-textinput v-model="params.password" type="password" placeholder="请输入你的密码" :clearBtn="false"></nut-textinput>
+        <nut-textinput v-model="params.password" type="password" placeholder="请输入你的密码" :clearBtn="false" @keyup.enter="enter"></nut-textinput>
         <div class="forget" @click="reset"> 忘记密码 </div>
       </div>
       <div class="btn">
@@ -20,7 +20,6 @@
 </template>
 
 <script>
-  import { mapActions, mapGetters } from 'vuex'
   export default {
     name: 'login',
     data() {
@@ -68,6 +67,7 @@
 }
 .login {
   width: 80vw;
+  max-width: calc(750px * 0.8);
   margin: 0 auto;
   margin-top: 3rem;
 

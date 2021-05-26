@@ -15,6 +15,14 @@
         ]
       }
     },
+    created() {
+      let userId = this.XGetUserId()
+      if(userId) {
+        this.SQueryUserBaseInfo({ userId })
+      } else {
+        this.$router.push("/login")
+      }
+    },
     methods: {},
     components: {
       groupList,

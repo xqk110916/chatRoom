@@ -1,19 +1,17 @@
 <template>
   <div class="group-box">
     <ul class="group-list">
-      <li class="group-item" v-for="n in 10" :key="n" @click="clickList(n)">
-        <div class="group-tag">
-          <i :class="['iconfont', checkId === n ? 'icon-down' : 'icon-right']"></i>
-          <span class="pl"> {{ name }} </span>
-          <span class="pl"> {{ allNum }}/{{ onLineNum }} </span>
+      <li class="group-item" v-for="item in groupInfoList" :key="item.id">
+        <div class="group-tag" @click="clickList(item.id)">
+          <i :class="['iconfont', checkId === item.id ? 'icon-down' : 'icon-right']"></i>
+          <span class="pl"> {{ item.groupTagName }} </span>
         </div>
-        
 
-        <ul class="info-list" v-show="checkId === n">
-          <li class="info-item" v-for="i in 5" :key="i">
+        <ul class="info-list" v-show="checkId === item.id">
+          <li class="info-item" v-for="info in friendInfo" :key="info.id">
             <img src="@/public/img/active-lianxiren.png" alt="">
-            <span> {{ name }} </span>
-            <span> {{ personalizedSignature }} </span>
+            <span> {{ info.remarkName }} </span>
+            <!-- <span> {{ info.personalizedSignature }} </span> -->
           </li>
         </ul>
       </li>
@@ -26,12 +24,22 @@
     name: "group-list",
     data() {
       return {
-        name: 'list name',
-        personalizedSignature: '这是签名这是签名这是签名这是签名这是签名这是签名这是签名',
-        allNum: 10,
-        onLineNum: 5,
-
         checkId: null,
+      }
+    },
+    computed: {
+      groupInfoList() {
+        return this.XGetGroupInfoList()
+      },
+      friendInfo() {
+        let data = this.XGetFriendList()
+        let group = this.XGetGroupInfoList().map(item => item.id)
+        let params = {}
+        group.map(groupId => {
+          let current = data.filter(item => item.groupTagId == groupId)
+          params[groupId] = current
+        })
+        return params[this.checkId]
       }
     },
     methods: {

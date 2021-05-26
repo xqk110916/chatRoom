@@ -1,35 +1,55 @@
 <template>
   <div class="info-header">
-    <div class="img">
+    <div class="img" @click="clickHeader">
       <img src="@/public/img/active-lianxiren.png" alt="">
     </div>
     <div class="info">
       <div class="name">
-        <p> name </p>
+        <p> {{ userInfo.name }} </p>
         <div class="add" @click="addFriend">
           <i class="iconfont icon-add"></i>
         </div>
       </div>
-      <div class="des">
-        <p>  这是签名这是签名这是签名这是签名这是签名这是签名这是签名这是签名这是签名这是签名这是签名这是签名这是签名这是签名  </p>
+      <div class="des over">
+        <p class="over"> {{ value }} </p>
       </div>
     </div>
+    <popup :isShow="isShow" :userInfo="userInfo" @change:isshow="changeIsShow"></popup>
   </div>
 </template>
 
 <script>
+  import popup from '@/components/popup'
   export default {
     name: 'header-info',
     data() {
       return {
-
+        isShow: false,
+      }
+    },
+    computed: {
+      userInfo() {
+        return this.XGetUserInfo()
+      },
+      value() {
+        return this.userInfo.personalizedSignature
       }
     },
     methods: {
+      clickHeader() {
+        this.SQueryAddRequest()
+        this.isShow = true
+      },
       addFriend() {
         this.$router.push("/add")
+      },
+      changeIsShow(value) {
+        this.isShow = value
       }
     },
+    components: {
+      popup,
+    }
   }
 </script>
 
@@ -40,6 +60,7 @@
   align-items: center;
   background: #E7DADA;
   .img {
+    width: 1rem;
     img {
       width: 1rem;
       height: 1rem;
@@ -50,6 +71,7 @@
 
   .info {
     color: #fff;
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: sapce-between;
@@ -78,11 +100,9 @@
     }
     
     .des {
+      height: 0.4rem;
       p {
         font-size: .3rem;
-        overflow: hidden;
-        text-overflow:ellipsis;
-        white-space: nowrap;
       }
     }
   }

@@ -20,6 +20,12 @@ function getFriendList() {
 function getFriendIds() {
   return this.$store.getters.getFriendIds
 }
+function getGroupInfoList() {
+  return this.$store.getters.getGroupInfoList
+}
+function getVerifyInfoList() {
+  return this.$store.getters.getVerifyInfoList
+}
 
 const install = function(Vue, ops) {
   Vue.prototype.XActions = callActions
@@ -28,6 +34,8 @@ const install = function(Vue, ops) {
   Vue.prototype.XGetUserId = getUserId
   Vue.prototype.XGetFriendList = getFriendList
   Vue.prototype.XGetFriendIds = getFriendIds
+  Vue.prototype.XGetGroupInfoList = getGroupInfoList
+  Vue.prototype.XGetVerifyInfoList = getVerifyInfoList
 }
 
 export default install

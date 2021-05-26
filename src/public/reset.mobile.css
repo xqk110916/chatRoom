@@ -214,7 +214,7 @@ input, textarea{
 
 /* 移除 chrome 自动补全时黄色背景 */
 input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 30px white inset;
+  box-shadow: 0 0 0 30px white inset;
 }
 
 /* 修改占位文字的默认样式 */

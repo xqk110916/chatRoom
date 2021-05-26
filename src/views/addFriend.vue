@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import infoList from '@/components/info-list'
+  import infoList from '@/components/search-info-list'
   export default {
     name: 'addFriend',
     data() {
@@ -37,7 +37,6 @@
     },
     methods: {
       clickBackRouter() {
-        console.log("back")
         this.$router.go(-1)
       },
       submitSearch() {

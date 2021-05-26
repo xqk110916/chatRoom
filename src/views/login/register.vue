@@ -63,9 +63,6 @@
 
 <style lang="scss" scoped>
 .login {
-  width: 80vw;
-  margin: 0 auto;
-  margin-top: 3rem;
 
   div {
     margin-top: 0.2rem;
