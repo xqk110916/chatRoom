@@ -38,6 +38,8 @@
       } else {
         window.attachEvent("onbeforeunload", this.reload)
       }
+
+      this.getBaseInfo()
     },
     mounted() {
       this.$notify.setDefaultOptions({
@@ -48,6 +50,14 @@
       reload() {
         sessionStorage.setItem('QQstate', JSON.stringify(this.$store.state))
       },
+      getBaseInfo() {
+        let userId = this.XGetUserId()
+        if(userId) {
+          this.SQueryUserBaseInfo({ userId })
+        } else {
+          this.$router.push("/login")
+        }
+      }
     },
     components: {
       headerInfo,
@@ -57,8 +67,7 @@
     watch: {
       $route: {
         handler(to, from) {
-          let disPath = ['/login', '/register', '/resetPassword', '/add']
-          if(disPath.indexOf(to.path) !== -1) {
+          if(!to.meta.isShow) {
             this.isShow = false
           } else {
             this.isShow = true
@@ -85,7 +94,7 @@
   margin: 0 auto;
   
   #content {
-    padding: .2rem .2rem 0;
+    padding: .05rem .05rem 0;
     padding-bottom: 1.5rem;
     font-size: .32rem;
   }

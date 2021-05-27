@@ -91,6 +91,9 @@ export default new Vuex.Store({
     getUserId(state, getters) {
       return state.userId
     },
+    getName(state, getters) {
+      return state.userInfo.name
+    },
     getFriendList(state, getters) {
       return state.friendList
     },

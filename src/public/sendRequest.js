@@ -3,7 +3,7 @@ function login(params) {      // 登录
   .then(result => {
     let { userId, token } = result
     this.XActions("login", { userId, token })
-    // this.QueryUserBaseInfo({ userId })
+    this.SQueryUserBaseInfo({ userId })
     return result
   })
   .catch(error => { throw error })

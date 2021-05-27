@@ -29,6 +29,13 @@ function emptyObject(params) { // params: 需要清空的对象;
   return params
 }
 
+function getFriendName(id) {
+  let list = this.XGetFriendList()
+  let current = list.filter(item => item.id == id)
+  let name = current.length ? current[0].remarkName : '未获取到'
+  return name
+}
+
 function test() {
   console.log(this.post)
 }
@@ -36,6 +43,7 @@ function test() {
 const install = function(Vue, ops) {
   Vue.prototype.clone = clone
   Vue.prototype.emptyObject = emptyObject
+  Vue.prototype.getFriendName = getFriendName
   Vue.prototype.test = test
 }
 

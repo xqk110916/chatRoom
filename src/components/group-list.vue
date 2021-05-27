@@ -8,7 +8,7 @@
         </div>
 
         <ul class="info-list" v-show="checkId === item.id">
-          <li class="info-item" v-for="info in friendInfo" :key="info.id">
+          <li class="info-item" v-for="info in friendInfo" :key="info.id" @click="chat(info.friendId)">
             <img src="@/public/img/active-lianxiren.png" alt="">
             <span> {{ info.remarkName }} </span>
             <!-- <span> {{ info.personalizedSignature }} </span> -->
@@ -49,6 +49,9 @@
         } else {
           this.checkId = id
         }
+      },
+      chat(id) {
+        this.$router.push("/chat/" + id)
       }
     },
   }

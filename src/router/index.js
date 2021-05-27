@@ -6,6 +6,7 @@ import linkman from '@/views/linkman'
 import dynamic from '@/views/dynamic'
 
 import add from '@/views/addFriend'
+import chat from '@/views/chat'
 
 import login from '@/views/login/login'
 import register from '@/views/login/register'
@@ -16,17 +17,26 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    meta: {index: -1},
+    meta: {
+      index: -1,
+      isShow: true,
+    },
     component: linkman
   },
   {
     path: '/msg',
-    meta: {index: 0},
+    meta: {
+      index: 0,
+      isShow: true,
+    },
     component: msg
   },
   {
     path: '/dynamic',
-    meta: {index: 1},
+    meta: {
+      index: 1,
+      isShow: true,
+    },
     component: dynamic
   },
   {
@@ -44,6 +54,10 @@ const routes = [
   {
     path: '/add',
     component: add
+  },
+  {
+    path: '/chat/:id',
+    component: chat
   }
 ]
 

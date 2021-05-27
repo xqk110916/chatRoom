@@ -14,6 +14,9 @@ function getUserInfo() {
 function getUserId() {
   return this.$store.getters.getUserId
 }
+function getName() {
+  return this.$store.getters.getName
+}
 function getFriendList() {
   return this.$store.getters.getFriendList
 }
@@ -32,6 +35,7 @@ const install = function(Vue, ops) {
   Vue.prototype.XGetToken = getToken
   Vue.prototype.XGetUserInfo = getUserInfo
   Vue.prototype.XGetUserId = getUserId
+  Vue.prototype.XGetName = getName
   Vue.prototype.XGetFriendList = getFriendList
   Vue.prototype.XGetFriendIds = getFriendIds
   Vue.prototype.XGetGroupInfoList = getGroupInfoList

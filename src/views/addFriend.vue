@@ -11,7 +11,6 @@
           :hasIcon="true"
           :hasTextButton="true"
           textInfo="搜索"
-          customClass="search_demo"
           @submit="submitSearch"
         ></nut-searchbar>
       </nut-col>
