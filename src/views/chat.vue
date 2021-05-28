@@ -20,7 +20,7 @@
       </ul>
     </div>
     <div class="ask">
-      <nut-searchbar v-model="value" :hasTextButton="true" textInfo="发送" @submit="sendInfo"></nut-searchbar>
+      <nut-searchbar v-model="value" :hasTextButton="true" textInfo="发送" @submit="sendInfo" @keyup.enter="sendInfo"></nut-searchbar>
     </div>
   </div>
 </template>
@@ -83,6 +83,12 @@
           msg: this.value
         }
         this.datas.push(payload)
+
+        this.$socket.emit("info", payload)
+        this.sockets.subscribe("push", (data) => {
+          console.log(data)
+        })
+
         this.value = ''
       },
     },

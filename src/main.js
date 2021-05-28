@@ -12,6 +12,16 @@ import httpRequest from './public/httpRequest'
 import sendRequest from './public/sendRequest'
 import axios from './axios'
 
+import VueSocketIO from 'vue-socket.io'
+ 
+Vue.use(new VueSocketIO({
+    debug: true,
+    // 服务器端地址
+    connection: 'http://172.29.32.122:8080',
+    vuex: {
+    }
+}))
+
 Vue.use(base)
 Vue.use(vuexMsg)
 Vue.use(httpRequest)
