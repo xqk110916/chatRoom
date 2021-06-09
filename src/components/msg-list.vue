@@ -1,17 +1,17 @@
 <template>
   <div class="msg-box">
     <ul class="msg-list">
-      <li class="msg-item" v-for="n in 5" :key="n">
+      <li class="msg-item" v-for="item in datas" :key="item.friendId" @click="toChat(item.friendId)">
         <div class="head-picture">
           <img src="@/public/img/active-lianxiren.png" alt="">
         </div>
         <div class="content">
           <div class="top">
-            <span> 名称 </span>
-            <span class="time"> 时间 </span>
+            <span> {{ item.name }} </span>
+            <span class="time"> {{ item.time }} </span>
           </div>
           <div class="msg-value">
-            <span> 这是收到的信息这是收到的信息这是收到的信息这是收到的信息这是收到的信息 </span>
+            <span> {{ item.msg }} </span>
           </div>
         </div>
       </li>
@@ -21,7 +21,48 @@
 
 <script>
   export default {
-    
+    name: 'msg-list',
+    data() {
+      return {
+        data: {},
+      }
+    },
+    created() {
+      this.sockets.subscribe("pushList:" + this.userId, (data) => {
+        this.data = data
+      })
+      this.$socket.emit("initMsgList", {
+        userId: this.userId,
+      })
+    },
+    destroyed() {
+      this.sockets.unsubscribe("pushList:" + this.userId)
+    },
+    computed: {
+      userId() {
+        return this.XGetUserId()
+      },
+      datas() {
+        return Object.keys(this.data).map(key => {
+          let userId = this.userId.toString()
+          let last = this.data[key][ this.data[key].length - 1 ]
+          let ids = key.split(":")
+          let index = ids.indexOf(userId)
+          ids.splice(index, 1)
+          let friendId = ids[0]
+          let name = this.getFriendName(friendId)
+          let msg = last.msg
+          let time = new Date(last.createTime).getTime()
+          time = this.timehms(time)
+          return { friendId, name, msg, time }
+        })
+      }
+    },
+    methods: {
+      toChat(id) {
+        this.$router.push("/chat/" + id)
+      }
+    },
   }
 </script>
 

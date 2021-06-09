@@ -32,26 +32,7 @@
       return {
         id: this.$route.params.id,
         value: '',
-        data: [
-          {
-            userId: 1,
-            oppositeSideId: 10,
-            spokesmanId: 1,
-            msg: '这是自己发的消息'
-          },
-          {
-            userId: 1,
-            oppositeSideId: 10,
-            spokesmanId: 1,
-            msg: '这是自己发的消息222'
-          },
-          {
-            userId: 1,
-            oppositeSideId: 10,
-            spokesmanId: 10,
-            msg: '这是对面发的消息'
-          },
-        ],
+        data: [],
       }
     },
     computed: {
@@ -71,6 +52,16 @@
         })
       }
     },
+    created() {
+      let key = this.compareSize()
+      this.sockets.subscribe("push:" + key, (data) => {
+        this.data = data
+      })
+    },
+    destroyed() {
+      let key = this.compareSize()
+      this.sockets.unsubscribe("push:" + key)
+    },
     methods: {
       clickBackRouter() {
         this.$router.go(-1)
@@ -82,15 +73,26 @@
           spokesmanId: this.userId,
           msg: this.value
         }
-        this.datas.push(payload)
-
         this.$socket.emit("info", payload)
-        this.sockets.subscribe("push", (data) => {
-          console.log(data)
-        })
 
         this.value = ''
       },
+      compareSize(a = this.userId, b = this.id) {
+        return Number(a) > Number(b) ? b + ":" + a : a + ":" + b
+      }
+    },
+    watch: {
+      $route: {
+        handler(to, from) {
+          if(to.name == 'chat' || !from) {
+            this.$socket.emit("initConnect", {
+              userId: this.userId,
+              friendId: this.id
+            })
+          }
+        },
+        immediate: true
+      }
     },
   }
 </script>

@@ -29,7 +29,7 @@
     },
     computed: {
       datas() {
-        return this.XGetVerifyInfoList()
+        return this.XGetVerifyInfoList({ userId: this.XGetUserId() })
       }
     },
     methods: {
@@ -42,7 +42,8 @@
           this.SQueryAddRequest()
           if(result.success) {
             let value = status ? '同意' : '拒绝'
-            this.$notify.success(`以你${value}"${item.name}"的好友申请`)
+            this.$notify.success(`你已${value}"${item.name}"的好友申请`)
+            this.SQueryFriendList()
           }
         })
       }

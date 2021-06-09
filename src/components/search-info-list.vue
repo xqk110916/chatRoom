@@ -31,11 +31,16 @@
     computed: {
       list() {
         let friendIds = this.XGetFriendIds()
+        let userId = this.XGetUserId()
         return this.datas.map(item => {
           let value = '添加'
           let disabled = false
           if(friendIds.indexOf(item.id) !== -1) {
             value = '已添加'
+            disabled = true
+          }
+          if(userId == item.id) {
+            value = '本人'
             disabled = true
           }
           item.btnValue = value
@@ -55,7 +60,7 @@
           name: this.XGetUserInfo().name,
           friendId: item.id,
           remarkName: item.name,
-          groupTagId: 0,
+          groupTagId: 0,      // 暂时后台默认等于user_id
         }).then(result => {
           item.btnValue = '已申请'
           item.disabled = true
